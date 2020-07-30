@@ -103,10 +103,11 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
             await transform(i);
           }
           await merge();
+          if (target) {
+            await move(path.join(__dirname, `./result/${finalName}.mp4`))
+          }
         }
-        if(target){
-          await move(path.join(__dirname, `./result/${finalName}.mp4`))
-        }
+
         await remove(tempFolder);
         console.log('--------------------- end ---------------------');
       }
