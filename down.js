@@ -42,8 +42,6 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
     const resultDirectory = path.join(__dirname, './result/');
     createDir(resultDirectory);// 递归创建文件
     const resultFile = (index) => path.join(resultDirectory, outputName(index));
-
-    remove(tempFolder)
     
 
     // 不存在 #EXT-X-DISCONTINUITY 时，对 tempFolder 的 clean
