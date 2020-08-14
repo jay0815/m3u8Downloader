@@ -54,6 +54,10 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
     const resultFile = (index) => path.join(resultDirectory, outputName(index));
     spinner.info("The resource folder has been created");
 
+    // 不存在 #EXT-X-DISCONTINUITY 时，对 tempFolder 的 clean
+    const isSingleSection = tsList.length === 1;
+    spinner.info('not exist EXT-X-DISCONTINUITY');
+
 
     let localPath = [] ; // 下载到本地的路径
     const content = `完成`;
