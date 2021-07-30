@@ -5,6 +5,7 @@ const dayjs = require('dayjs');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const Ora = require('ora');
+const { log } = require('console');
 
 //递归的创建文件夹
 const mkdirs = (directoryPath) => {
@@ -56,7 +57,10 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
 
     // 不存在 #EXT-X-DISCONTINUITY 时，对 tempFolder 的 clean
     const isSingleSection = tsList.length === 1;
-    spinner.info('not exist EXT-X-DISCONTINUITY');
+    spinner.info(`${isSingleSection ? 'not' : ''} exist EXT-X-DISCONTINUITY`);
+    if(!isSingleSection) {
+          spinner.info(`there is ${tsList.length} part of sections`);
+    }
 
 
     let localPath = [] ; // 下载到本地的路径
@@ -123,7 +127,8 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
           }
           await merge();
           if (target) {
-            await move(path.join(__dirname, `./result/${finalName}.mp4`))
+            await move(path.join(__dirname, `./result/${finalName}.mp4`));
+            await remove(path.join(__dirname, `./result/`));
           }
         }
 
@@ -140,6 +145,7 @@ module.exports = ({ tsList = [], host = '', fileType, uuid = dayjs().valueOf(), 
         const realPath = path.join(tempFolder, fullName);
 
         localPath.push(`file '${fullName}'`); //缓存本地路径，用来合成
+        console.log(url)
         request({
             url: url
         }, (e, response, body) => {
