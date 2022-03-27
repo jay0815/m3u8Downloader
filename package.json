@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "dayjs": "^1.8.30",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "ora": "^5.0.0",
     "request": "^2.88.2"
   }
