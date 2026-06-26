@@ -1,14 +1,38 @@
 {
-  "name": "downloader",
+  "name": "m3u8Downloader",
   "version": "1.0.0",
-  "description": "m3u8 downloader",
-  "main": "main.js",
-  "author": "jackQ",
-  "license": "MIT",
+  "description": "A Node.js CLI tool for downloading m3u8 streaming video",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "dev": "tsx src/main.ts",
+    "build": "tsup",
+    "start": "node dist/main.js",
+    "lint": "oxlint src/",
+    "lint:fix": "oxlint --fix src/",
+    "format": "oxfmt src/",
+    "format:check": "oxfmt --check src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
   "dependencies": {
-    "dayjs": "^1.8.30",
-    "minimist": "^1.2.6",
-    "ora": "^5.0.0",
-    "request": "^2.88.2"
+    "commander": "^15.0.0",
+    "ora": "^9.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
